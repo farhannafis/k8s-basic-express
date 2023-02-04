@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-express-k8s-deployment
+  labels:
+    app: basic-express-k8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basic-express-k8s
+  # Blueprint for Pods
+  template:
+    metadata:
+      labels:
+        app: basic-express-k8s
+    spec:
+      # Pods
+      containers:
+      - name: basic-express-k8s
+        image: farhannafis/basic-express
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: basic-express-k8s-service
+spec:
+  # This is an external service (to allow express server access from the browser). Default type is ClusterIP (an internal service)
+  type: NodePort
+  # Should match the selector value in Pod
+  selector:
+    app: basic-express-k8s
+  ports:
+    - protocol: TCP
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+      port: 3000
+      targetPort: 3000
+      # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+      nodePort: 30100

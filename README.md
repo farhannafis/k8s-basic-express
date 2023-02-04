@@ -36,6 +36,59 @@ docker ps
 docker stop <container_id>
 ```
 
+### To push image to Docker hub
+
+```bash
+docker push <docker_hub_username>/<image_name>:<tag>
+```
+
+Note: 
+1. Make sure you run ```docker login``` first before perform the ```docker push``` command
+2. If no ```:<tag>``` defined, the tag defaults to ```latest```
+
+## Create Kubernetes Cluster
+
+## Requirement
+
+1. Minikube
+2. kubectl
+
+## Create Kubernetes Deployment and Service definition
+
+Refer ```kube/deployment-service.yaml```
+
+## Start Minikube
+
+```bash
+minikube start
+```
+
+## Create Deployment and Service on Kubernetes cluster
+
+```bash
+kubectl apply -f kube/deployment-service.yaml
+```
+
+## Check components created in Kubernetes cluster
+
+```bash
+kubectl get all
+```
+
+## Run Kubernetes cluster
+
+1. Get the service name using the command below. In this repo case is ```basic-express-k8s-service```
+
+```bash
+kubectl get svc
+```
+
+2. Then, run the minikube command as below:
+
+```bash
+minikube service <service_name>
+```
+
 ## References:
 
 1. https://www.digitalocean.com/community/tech-talks/how-to-deploy-a-resilient-node-js-application-on-kubernetes-from-scratch
