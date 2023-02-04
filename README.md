@@ -89,7 +89,7 @@ kubectl get svc
 minikube service <service_name>
 ```
 
-## References:
+## References
 
 1. https://www.digitalocean.com/community/tech-talks/how-to-deploy-a-resilient-node-js-application-on-kubernetes-from-scratch
 2. https://www.tomray.dev/nestjs-docker-production
